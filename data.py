@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import Label, Entry, Button, Text, PhotoImage
 from ttkthemes import ThemedTk
 from PIL import Image, ImageTk
+import pickle
 
 data = pd.read_csv("/Users/Saumya/Downloads/air.csv")
 
