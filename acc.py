@@ -1,12 +1,12 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from datetime import datetime
 import matplotlib.pyplot as plt
 
 data = pd.read_csv('/Users/Saumya/Downloads/air.csv')
 
-# Convert 'Timestamp' to a datetime format
 data['Timestamp'] = pd.to_datetime(data['Timestamp'])
 
 data['Year'] = data['Timestamp'].dt.year
@@ -27,6 +27,9 @@ model.fit(X_train, y_train)
 data_2022 = data[data['Year'] == 2022]
 
 y_predicted_2022 = model.predict(data_2022[features])
+
+r2=r2_score(y_true=data_2022['PM2.5'],y_pred=y_predicted_2022)
+print(r2) #97
 
 plt.figure(figsize=(12, 6))
 plt.plot(data_2022['Timestamp'], data_2022['PM2.5'], label='Original PM2.5', color='blue')
